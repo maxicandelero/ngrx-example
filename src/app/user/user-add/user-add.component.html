@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4>New user</h4>
+    <hr/>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label>Username (Email)</label>
+        <input type="text" class="form-control" formControlName="username" />
+        <div class="form-validation" *ngIf="userForm.controls['username'].touched && userForm.controls['username'].errors">
+          There are validation errors.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label>Description</label>
+        <input type="text" class="form-control" formControlName="description" />
+        <div class="form-validation" *ngIf="userForm.controls['description'].touched && userForm.controls['description'].errors">
+          There are validation errors.
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary btn-sm" [disabled]="!userForm.valid">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
