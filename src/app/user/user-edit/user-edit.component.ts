@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { AppState } from 'src/app/store/app.store';
+import { AppState } from 'src/app/store/app.state';
 import { getUserById } from '../state/user.selector';
 import { User } from 'src/app/models/user.model';
 import { userEdit } from '../state/user.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-edit',
@@ -16,7 +16,6 @@ import { userEdit } from '../state/user.actions';
 export class UserEditComponent implements OnInit, OnDestroy {
   user: User;
   userSubscription: Subscription;
-  submitted: boolean = false;
   userForm: FormGroup;
 
   constructor(
@@ -53,7 +52,6 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.submitted = true;
     if (this.userForm.invalid){
       return;
     }

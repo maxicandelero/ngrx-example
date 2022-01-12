@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.store';
+import { AppState } from 'src/app/store/app.state';
 import { userAdd } from '../state/user.actions';
 import { Router } from '@angular/router';
 
@@ -12,17 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-  submitted: boolean = false;
-  userForm: FormGroup = this.formBuilder.group({
-    username: [null, [
-      Validators.required,
-      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    ]],
-    description: [null, [
-      Validators.required,
-      Validators.minLength(5)
-    ]]
-  });
+  userForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,10 +20,24 @@ export class UserAddComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.createForm();
+  }
+
+  createForm(): void {
+    this.userForm = this.formBuilder.group({
+      username: [null, [
+        Validators.required,
+        Validators.email
+      ]],
+      description: [null, [
+        Validators.required,
+        Validators.minLength(5)
+      ]]
+    });
+  }
 
   onSubmit(): void {
-    this.submitted = true;
     if (this.userForm.invalid){
       return;
     }

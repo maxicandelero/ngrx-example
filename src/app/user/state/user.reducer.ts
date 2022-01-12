@@ -9,7 +9,7 @@ const _usersReducer = createReducer(initialUsersState,
     return {
       ...state,
       users: [...state.users, user]
-    }
+    };
   }),
   on(userEdit, (state, action) => {
     const editUsers = state.users.map((user) => {
@@ -18,14 +18,14 @@ const _usersReducer = createReducer(initialUsersState,
     return {
       ...state,
       users: editUsers
-    }
+    };
   }),
   on(userDelete, (state, { id }) => {
     const editUsers = state.users.filter((user) => user.id !== id);
     return {
       ...state,
       users: editUsers
-    }
+    };
   })
 );
 

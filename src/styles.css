@@ -1,1 +1,6 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.form-validation {
+  font-size: 14px;
+  color: red;
+}

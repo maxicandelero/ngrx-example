@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
-import { AppState } from 'src/app/store/app.store';
+import { AppState } from 'src/app/store/app.state';
 import { userDelete } from '../state/user.actions';
 import { getUsers } from '../state/user.selector';
 
