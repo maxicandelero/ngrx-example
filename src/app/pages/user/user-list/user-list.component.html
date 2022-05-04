@@ -31,7 +31,7 @@
         </tr>
       </tbody>
     </table>
-    <p *ngIf="!(users$ | async)">There isn't data.</p>
+    <p *ngIf="(users$ | async) === null">There isn't data.</p>
   </div>
   <div class="col-md-4">
     <router-outlet></router-outlet>
