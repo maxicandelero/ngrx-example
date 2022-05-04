@@ -7,3 +7,6 @@ const getAuthState = createFeatureSelector<AuthState>(AUTH_STATE_NAME)
 export const isAuthenticated = createSelector(getAuthState, state => {
   return state.session ? true : false;
 });
+export const getToken = createSelector(getAuthState, state => {
+  return state.session ? state.session.sessionToken : null;
+});

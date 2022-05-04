@@ -12,4 +12,8 @@ export class AuthSession {
     private name: string,
     private token: string
   ) {}
+
+  get sessionToken() {
+    return this.token;
+  }
 }

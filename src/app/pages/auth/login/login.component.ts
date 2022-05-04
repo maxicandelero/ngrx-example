@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
+import { getErrorMessage, getLoading } from 'src/app/store/shared/shared.selector';
 import { loginStart } from '../state/auth.actions';
 
 @Component({
@@ -11,15 +13,18 @@ import { loginStart } from '../state/auth.actions';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  showLoading: Observable<boolean>;
+  errorMessage: Observable<string>;
   loginForm: FormGroup;
 
   constructor(
     private store: Store<AppState>,
-    private formBuilder: FormBuilder,
-    private router: Router
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.showLoading = this.store.select(getLoading);
+    this.errorMessage = this.store.select(getErrorMessage);
     this.createForm();
   }
 

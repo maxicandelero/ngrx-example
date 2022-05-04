@@ -14,11 +14,11 @@ export class AuthService {
   login(username: string, password: string): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(
       environment.urlAPI + '/auth/Authenticate',
-      { email: username, password , validacion: '861202'}
+      { email: username, password , validacion: '166085'}
     );
   }
 
-  formatSession(data: AuthResponse): AuthSession {
+  formatSession(data: any): AuthSession {
     const session = new AuthSession(
       data.id,
       data.email,
@@ -45,14 +45,12 @@ export class AuthService {
     const sessionString = localStorage.getItem('userSession');
     if (sessionString) {
       const sessionData = JSON.parse(sessionString);
-      const session = new AuthSession(
-        sessionData.id,
-        sessionData.email,
-        sessionData.nombre,
-        sessionData.token
-      );
-      return session;
+      return this.formatSession(sessionData);
     }
     return null;
+  }
+
+  logout() {
+    localStorage.removeItem('userSession');
   }
 }

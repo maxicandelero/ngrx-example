@@ -5,6 +5,7 @@ export const LOGIN_START = '[auth page] login start';
 export const LOGIN_SUCCESS = '[auth page] login success';
 export const LOGIN_FAIL = '[auth page] login fail';
 export const LOGIN_AUTO = '[auth page] login auto';
+export const LOGIN_LOGOUT = '[auth page] logout';
 
 export const loginStart = createAction(
   LOGIN_START,
@@ -12,6 +13,7 @@ export const loginStart = createAction(
 );
 export const loginSuccess = createAction(
   LOGIN_SUCCESS,
-  props<{ session: AuthSession }>()
+  props<{ session: AuthSession | null, redirect: boolean }>()
 );
 export const loginAuto = createAction(LOGIN_AUTO);
+export const loginLogout = createAction(LOGIN_LOGOUT);
