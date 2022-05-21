@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { exhaustMap, Observable } from 'rxjs';
+import { exhaustMap, Observable, take } from 'rxjs';
 import { AppState } from '../store/app.state';
 import { Store } from '@ngrx/store';
 import { getToken } from '../pages/auth/state/auth.selector';
@@ -19,6 +19,7 @@ export class JwtInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return this.store.select(getToken).pipe(
+      take(1),
       exhaustMap((token) => {
         if (!token) {
           return next.handle(request);
