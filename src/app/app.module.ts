@@ -16,6 +16,8 @@ import { appReducer } from './store/app.state';
 import { AuthEffects } from './pages/auth/state/auth.effects';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { MainComponent } from './pages/main/main.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './store/router/custom-serializer';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,9 @@ import { MainComponent } from './pages/main/main.component';
       logOnly: environment.production,
       autoPause: true,
     }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
