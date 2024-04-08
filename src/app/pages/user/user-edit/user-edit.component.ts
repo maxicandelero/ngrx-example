@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
@@ -16,11 +16,11 @@ import { Subscription } from 'rxjs';
 export class UserEditComponent implements OnInit, OnDestroy {
   user: User;
   userSubscription: Subscription;
-  userForm: FormGroup;
+  userForm: UntypedFormGroup;
 
   constructor(
     private store: Store<AppState>,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router
   ) {}
 

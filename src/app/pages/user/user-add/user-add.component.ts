@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
@@ -12,10 +12,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-  userForm: FormGroup;
+  userForm: UntypedFormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private store: Store<AppState>,
     private router: Router
   ) { }

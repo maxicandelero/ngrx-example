@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { getErrorMessage, getLoading } from 'src/app/store/shared/shared.selector';
 import { loginStart } from '../state/auth.actions';
+
+interface User {
+  username: FormControl<string | null>;
+  password: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-login',
@@ -29,14 +34,14 @@ export class LoginComponent implements OnInit {
   }
 
   createForm(): void {
-    this.loginForm = this.formBuilder.group({
-      username: [null, [
+    this.loginForm = this.formBuilder.group<User>({
+      username: this.formBuilder.control(null, [
         Validators.required,
         Validators.email
-      ]],
-      password: [null, [
+      ]),
+      password: this.formBuilder.control(null, [
         Validators.required
-      ]]
+      ])
     });
   }
 
