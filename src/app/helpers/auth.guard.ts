@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, UrlTree, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, UrlTree, Router, RouterStateSnapshot, CanActivateChild } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AppState } from '../store/app.state';
@@ -9,7 +9,7 @@ import { isAuthenticated } from '../pages/auth/state/auth.selector';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private store: Store<AppState>,
     private router: Router,
@@ -35,5 +35,5 @@ export class AuthGuard implements CanActivate {
         return true;
       })
     );
-}
+  }
 }
