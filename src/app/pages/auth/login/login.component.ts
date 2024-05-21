@@ -7,7 +7,7 @@ import { AppState } from 'src/app/store/app.state';
 import { getErrorMessage, getLoading } from 'src/app/store/shared/shared.selector';
 import { loginStart } from '../state/auth.actions';
 
-interface User {
+interface LoginData {
   username: FormControl<string | null>;
   password: FormControl<string | null>;
 }
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   createForm(): void {
-    this.loginForm = this.formBuilder.group<User>({
+    this.loginForm = this.formBuilder.group<LoginData>({
       username: this.formBuilder.control(null, [
         Validators.required,
         Validators.email
